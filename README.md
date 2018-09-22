@@ -3,7 +3,7 @@ Facebook Messenger chatbot for Hue
 
 # 
 
-###Get Started (dev):
+### Get Started (dev):
 1. npm i
 2. create a .env file with the following variables:
 <code>
