@@ -1,0 +1,13 @@
+# For more information, run:
+#   $ gcloud topic gcloudignore
+#
+.gcloudignore
+.git
+.gitignore
+
+# Node.js dependencies:
+node_modules/
+
+# dev env
+.env
+nodemon.json

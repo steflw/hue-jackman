@@ -1,0 +1,51 @@
+POST localhost:5000/webhook
+Content-Type: application/json
+
+
+{
+  "entry": [
+    {
+      "id": "123456789",
+      "messaging": [
+        {
+          "message": {
+            "mid": "mid.sdofjlsdfjsdhgjdf",
+            "seq": 329720,
+            "text": "Turn on the living room lights",
+            "nlp": {
+              "entities": {
+                "intent": [
+                  {
+                    "confidence": 0.85,
+                    "value": "on_off"
+                  }
+                ],
+                "on_off": [
+                  {
+                    "confidence": 0.85,
+                    "value": "on"
+                  }
+                ],
+                "location": [
+                  {
+                    "confidence": 0.85,
+                    "value": "Living Room"
+                  }
+                ]
+              }
+            }
+          },
+          "recipient": {
+            "id": "TEST123"
+          },
+          "sender": {
+            "id": "TEST123"
+          },
+          "timestamp": 1514487053144
+        }
+      ]
+    }
+  ]
+}
+
+###
