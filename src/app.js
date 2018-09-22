@@ -19,6 +19,7 @@ app.use(morgan('tiny'));
 app.use('/', index);
 app.use('/webhook', webhook);
 
+// TODO handle promise rejection + send user status message
 getLightGroups();
 
 // Messenger thread setup
