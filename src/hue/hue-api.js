@@ -1,3 +1,4 @@
+require('dotenv').load();
 import axios from 'axios';
 import { cacheResponse, getCachedResponse } from './cache'
 
