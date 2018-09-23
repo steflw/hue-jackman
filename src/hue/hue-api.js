@@ -24,7 +24,6 @@ export default {
     let response;
     try {
       response = await getCachedResponse(endPoint) || await hueBridge.get(endPoint);
-      console.log('response', response)
     } catch (error) {
       if (retries === 3) {
         console.error(
