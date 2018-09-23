@@ -9,25 +9,26 @@ const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNA
 
 describe('hue-api.js', function () {
 
+  afterEach(() => nock.cleanAll());
+
   describe('getHueEndpoint', function () {
+    it('should retry request up to 3 times on error response', async function () {
+      nock(baseURL)
+      .get('/groups')
+      .times(4)
+      .reply(500, {});
+      const spy = sinon.spy(api, 'getHueEndpoint');
+      const error = await api.getHueEndpoint('/groups');
+      expect(error.response.status).toEqual(500);
+      expect(spy.callCount).toEqual(4);
+    });
+
     it('should return expected result from hue bridge endpoint', async function () {
       nock(baseURL)
       .get('/groups')
       .reply(200, lightGroupsResponse);
       const response = await api.getHueEndpoint('/groups')
       expect(response.data).toEqual(lightGroupsResponse)
-    });
-
-    it('should make request to expected hue bridge endpoint', async function () {
-      nock(baseURL)
-      .get('/groups')
-      .times(3)
-      .reply(500, {});
-      const spy = sinon.spy(api, 'getHueEndpoint');
-      const error = await api.getHueEndpoint('/groups');
-      console.log('error', error)
-      expect(error.response.status).toEqual(500);
-      expect(spy.callCount).toEqual(3);
     });
   });
 
@@ -37,7 +38,7 @@ describe('hue-api.js', function () {
       .get('/groups')
       .reply(200, lightGroupsResponse);
       const lightGroups = await api.getLightGroups();
-      expect(lightGroups.data).toEqual(lightGroupsResponse)
+      expect(lightGroups).toEqual(lightGroupsResponse)
     });
   });
 });
