@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import index from './routes/index'
 import webhook from './routes/webhook'
 
-import { getLightGroups } from "./hue/hue-api";
+import api from "./hue/hue-api";
 import setup from './api-helpers/setup'
 
 const app = express();
@@ -20,7 +20,7 @@ app.use('/', index);
 app.use('/webhook', webhook);
 
 // TODO handle promise rejection + send user status message
-getLightGroups();
+api.getLightGroups();
 
 // Messenger thread setup
 // setup.persistentMenu();

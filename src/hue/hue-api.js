@@ -15,9 +15,7 @@ hueBridge.interceptors.response.use(res => {
 });
 
 export default {
-
   async getHueEndpoint(endPoint, retries = 3) {
-
     try {
       return await getCachedResponse(endPoint) || await hueBridge.get(endPoint);
     } catch (error) {
