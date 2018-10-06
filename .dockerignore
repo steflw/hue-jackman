@@ -1,7 +1,5 @@
-node_modules
-npm-debug.log
-http
-README.md
-nodemon.json
-.gcloudignore
+.git
 .gitignore
+README.md
+docker-compose.yml
+node_modules
