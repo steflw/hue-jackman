@@ -4,7 +4,7 @@
   "description": "Messenger chat bot for Hue",
   "main": "src/app.js",
   "scripts": {
-    "start": "NODE_ENV=production node --inspect dist/app.js ",
+    "start": "NODE_ENV=production node dist/app.js ",
     "dev": "nodemon --config nodemon.json --inspect src/app.js --exec babel-node ",
     "build": "babel src/ -d dist",
     "test": "mocha --require babel-register --require babel-register tests/ --exit"
