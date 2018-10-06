@@ -1,7 +1,8 @@
+if (process.env.NODE_ENV !== 'production') require('dotenv').load()
 import redis from 'redis';
 import { promisify } from 'util'
 
-const cache = redis.createClient('redis://redis:6379');
+const cache = redis.createClient(`redis://${process.env.REDIS_ADDR || 'redis:6379'}`);
 
 const getCacheAsync = promisify(cache.get).bind(cache);
 

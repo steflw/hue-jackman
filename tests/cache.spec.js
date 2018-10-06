@@ -1,7 +1,6 @@
 import expect from 'expect';
 import cache, { getCachedResponse } from '../src/hue/cache';
 
-
 const livingRoom = {
   0: {
     name: "living room"

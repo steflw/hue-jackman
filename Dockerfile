@@ -9,6 +9,7 @@ COPY . /usr/src/app
 RUN npm run build
 RUN npm prune --production
 
+RUN ls
 EXPOSE 8080
 
 CMD ["npm","start"]
