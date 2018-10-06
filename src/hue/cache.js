@@ -2,7 +2,7 @@ import redis from 'redis';
 import { promisify } from 'util'
 
 const cache = redis.createClient('redis://redis:6379');
-console.log('------- env -----', process.env)
+
 const getCacheAsync = promisify(cache.get).bind(cache);
 
 cache.flushdb();
