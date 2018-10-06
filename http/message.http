@@ -10,7 +10,7 @@ Content-Type: application/json
         {
           "message": {
             "mid": "mid.sdofjlsdfjsdhgjdf",
-            "seq": 329720,
+            "seq": 1234,
             "text": "Turn on the living room lights",
             "nlp": {
               "entities": {

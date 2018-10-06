@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   res.sendStatus(200);
   const entries = req.body.entry;
-  console.log('entries')
     entries.forEach(entry => {
       entry.messaging.forEach(messagingEvent => {
         if (messagingEvent.message) {

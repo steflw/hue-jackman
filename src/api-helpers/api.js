@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const callMessengerApi = (endPoint, messageData, retries = 3) => {
+  return
   if (!endPoint) {
     console.error('callApi requires a specific endpoint.');
     return
