@@ -24,9 +24,13 @@ export const cacheResponse = res => {
   cache.set(key, JSON.stringify(res.data), 'EX', 600, handleRedisError);
 };
 
-export const getCachedResponse = key =>
-  getCacheAsync(key)
-  .then(value => value && JSON.parse(value))
-  .catch(err => console.log(`error fetching ${err}`));
+export const getCachedResponse = async key => {
+  try {
+    const res = await getCacheAsync(key)
+    return res && JSON.parse(res)
+  } catch (err){
+    console.log(`error fetching ${err}`)
+  }
+}
 
 export default cache

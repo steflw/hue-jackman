@@ -8,6 +8,8 @@ import webhook from './routes/webhook';
 import hueApi from "./hue/hue-api";
 import setup from './api-helpers/setup';
 
+// TODO different docker compose configs
+
 const app = express();
 const PORT = process.env.PORT || 80;
 
