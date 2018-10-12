@@ -30,6 +30,7 @@ export const getCachedResponse = async key => {
     return res && JSON.parse(res)
   } catch (err){
     console.log(`error fetching ${err}`)
+    return err
   }
 }
 
