@@ -17,7 +17,7 @@ hueBridge.interceptors.response.use(res => {
 export default {
   async getHueEndpoint(endPoint, retries = 3) {
     try {
-      return await hueBridge.get(endPoint);
+      return await hueBridge.get(endPoint)
     } catch (error) {
       console.error(
         `There was an error calling ${endPoint}.`,
@@ -30,16 +30,20 @@ export default {
         return error
       }
 
-      return await this.getHueEndpoint(endPoint, retries - 1)
+      return this.getHueEndpoint(endPoint, retries - 1)
     }
   },
 
-  getHue(endpoint) {
-    return getCachedResponse(endpoint) || this.getHueEndpoint(endpoint)
+  async getHue(endpoint) {
+    return await getCachedResponse(endpoint) || await this.getHueEndpoint(endpoint)
   },
 
   getLightGroups() {
     return this.getHue('/groups')
+  },
+
+  getLightGroup(groupId) {
+    return this.getHue(`/groups/${groupId}`)
   },
 
   getLights() {

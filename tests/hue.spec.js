@@ -4,6 +4,7 @@ import sinon from 'sinon';
 
 import api from '../src/hue/hue-api';
 import { lightGroupsResponse } from "./hue-mock";
+import { getGroupByLocation } from "../src/hue/events";
 
 const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
 
@@ -41,4 +42,11 @@ describe('hue-api.js', function () {
       expect(lightGroups).toEqual(lightGroupsResponse)
     });
   });
+
+  describe('getGroupByLocation', function () {
+    it('should return object', function () {
+      const group = getGroupByLocation(lightGroupsResponse, lightGroupsResponse[1].name)
+      expect(group).toEqual({ 1: lightGroupsResponse[1] })
+    });
+  })
 });

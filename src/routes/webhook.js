@@ -18,7 +18,6 @@ router.post('/', (req, res) => {
       entry.messaging.forEach(messagingEvent => {
         if (messagingEvent.message) {
           handleMessage(messagingEvent);
-          console.log(messagingEvent)
         }
       })
     })

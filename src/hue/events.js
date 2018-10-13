@@ -1,11 +1,22 @@
 import HueBot from "../bot/bot";
 import hueApi from './hue-api';
+import send from "../api-helpers/send";
+import { UNKNOWN_ROOM_RESPONSE } from "../bot/responses";
 
 export const hueBot = new HueBot();
 
-hueBot.on('on_off', async (obj) => {
-  console.log('event fired on_off', obj)
-  // await getGroup(obj.location)
+hueBot.on('on_off', async (message) => {
+  console.log('event fired on_off', message)
+  const groups = await hueApi.getLightGroups()
+  const group = getGroupByLocation(groups, message.location)
+  if (group) {
+    const test = await hueApi.getLightGroup(group.groupId)
+    console.log(test)
+  } else {
+    console.log('---', message.senderId)
+    send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE)
+    return
+  }
   // Send hue request
   // emit error or handle error + try again up to 3 times?
   // Send text response
@@ -19,12 +30,10 @@ hueBot.on('colour', ({location, value}) => {
   console.log('event fired colour')
 });
 
-const getGroup = async (location) => {
-  const groups = await hueApi.getLightGroups()
-  for (let group in groups) {
-    if (groups[group].name.toLowerCase() === location.toLowerCase()) {
-      console.log('selected grp', groups[group])
-      return groups[group]
+export const getGroupByLocation = (groups, location) => {
+  for (let groupId in groups) {
+    if (groups[groupId].name.toLowerCase() === location.toLowerCase()) {
+      return { groupId, ...groups[groupId] }
     }
   }
 };
