@@ -10,8 +10,7 @@ hueBot.on('on_off', async (message) => {
   const groups = await hueApi.getLightGroups()
   const group = getGroupByLocation(groups, message.location)
   if (group) {
-    const test = await hueApi.getLightGroup(group.groupId)
-    console.log(test)
+
   } else {
     console.log('---', message.senderId)
     send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE)
