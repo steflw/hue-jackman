@@ -34,6 +34,25 @@ export default {
     }
   },
 
+  async setHueState(endPoint, params, retries = 3) {
+    try {
+      return await hueBridge.put(endPoint, params)
+    } catch (error) {
+      console.error(
+        `There was an error calling ${endPoint}.`,
+        `\n(${error.status}) ${error.statusText}:`,
+        error.message
+      );
+
+      if (retries === 0) {
+        console.error(`No more retries left, put request to hue bridge "${endPoint}" failed\n`);
+        return error
+      }
+
+      return this.getHueEndpoint(endPoint, retries - 1)
+    }
+  },
+
   async getHue(endpoint) {
     return await getCachedResponse(endpoint) || await this.getHueEndpoint(endpoint)
   },
@@ -48,5 +67,12 @@ export default {
 
   getLights() {
     return this.getHue('/lights')
+  },
+
+  turnOnGroup(groupId, value) {
+    let onOff
+    if (value == 'on') onOff = true
+    else onOff = false
+    return this.setHueState(`/groups/${groupId}/action`, { on: onOff })
   }
 }

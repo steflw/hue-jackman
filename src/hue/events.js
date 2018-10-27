@@ -1,7 +1,7 @@
 import HueBot from "../bot/bot";
 import hueApi from './hue-api';
-import send from "../api-helpers/send";
-import { UNKNOWN_ROOM_RESPONSE } from "../bot/responses";
+import send from '../api-helpers/send';
+import { UNKNOWN_ROOM_RESPONSE } from '../bot/responses';
 
 export const hueBot = new HueBot();
 
@@ -10,11 +10,11 @@ hueBot.on('on_off', async (message) => {
   const groups = await hueApi.getLightGroups()
   const group = getGroupByLocation(groups, message.location)
   if (group) {
-
+    console.log('--- group', group)
+    hueApi.turnOnGroup(group.groupId, message.intentValue)
   } else {
     console.log('---', message.senderId)
     send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE)
-    return
   }
   // Send hue request
   // emit error or handle error + try again up to 3 times?

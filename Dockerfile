@@ -11,5 +11,6 @@ RUN npm prune --production
 
 EXPOSE 8080
 EXPOSE 56745
+EXPOSE 9229
 
 CMD ["npm","run","start:dev"]

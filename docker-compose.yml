@@ -1,6 +1,6 @@
 version: '3'
 services:
-  app:
+  hue-bot:
     container_name: hue-bot
     build: ./
     volumes:

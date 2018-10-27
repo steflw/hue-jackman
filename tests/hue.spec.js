@@ -46,7 +46,7 @@ describe('hue-api.js', function () {
   describe('getGroupByLocation', function () {
     it('should return object', function () {
       const group = getGroupByLocation(lightGroupsResponse, lightGroupsResponse[1].name)
-      expect(group).toEqual({ 1: lightGroupsResponse[1] })
+      expect(group).toEqual({ groupId: '1', ...lightGroupsResponse[1] })
     });
   })
 });
