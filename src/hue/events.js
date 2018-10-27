@@ -1,7 +1,11 @@
 import HueBot from "../bot/bot";
 import hueApi from './hue-api';
 import send from '../api-helpers/send';
-import { UNKNOWN_ROOM_RESPONSE } from '../bot/responses';
+import {
+  REQUEST_FAILED_RESPONSE,
+  REQUEST_FULLFILLED_RESPONSE,
+  UNKNOWN_ROOM_RESPONSE
+} from '../bot/responses';
 
 export const hueBot = new HueBot();
 
@@ -10,13 +14,16 @@ hueBot.on('on_off', async (message) => {
   const groups = await hueApi.getLightGroups()
   const group = getGroupByLocation(groups, message.location)
   if (group) {
-    hueApi.setGroupOnOffState(group.groupId, message.intentValue)
+    try {
+      await hueApi.setGroupOnOffState(group.groupId, message.intentValue)
+      send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE)
+    } catch (e) {
+      console.log(e)
+      send.textMessage(message.senderId, REQUEST_FAILED_RESPONSE)
+    }
   } else {
     send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE)
   }
-  // Send hue request
-  // emit error or handle error + try again up to 3 times?
-  // Send text response
 });
 
 hueBot.on('brightness', ({location, value, senderId}) => {
