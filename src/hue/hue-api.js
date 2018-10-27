@@ -69,7 +69,7 @@ export default {
     return this.getHue('/lights')
   },
 
-  turnOnGroup(groupId, value) {
+  setGroupOnOffState(groupId, value) {
     let onOff
     if (value == 'on') onOff = true
     else onOff = false
