@@ -3,8 +3,8 @@ import nock from 'nock';
 import sinon from 'sinon';
 
 import api from '../src/hue/hue-api';
-import { lightGroupsResponse } from "./hue-mock";
-import { getGroupByLocation } from "../src/hue/events";
+import { lightGroupsResponse } from './hue-mock';
+import { getGroupByLocation } from '../src/hue/events';
 
 const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
 

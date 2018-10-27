@@ -1,4 +1,4 @@
-import HueBot from "../bot/bot";
+import HueBot from '../bot/bot';
 import hueApi from './hue-api';
 import send from '../api-helpers/send';
 import {
@@ -18,7 +18,7 @@ hueBot.on('on_off', async (message) => {
       await hueApi.setGroupOnOffState(group.groupId, message.intentValue)
       send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE)
     } catch (e) {
-      console.log(e)
+      console.log(e);
       send.textMessage(message.senderId, REQUEST_FAILED_RESPONSE)
     }
   } else {

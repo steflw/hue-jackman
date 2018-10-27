@@ -17,7 +17,6 @@ export const handleMessage = event => {
   }
 
   const filteredEntities = filterLowConfidenceEntities(message.nlp.entities);
-
   const errorResponse = getErrorResponse(filteredEntities);
 
   if (errorResponse) {

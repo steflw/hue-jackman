@@ -8,8 +8,6 @@ import webhook from './routes/webhook';
 import hueApi from "./hue/hue-api";
 import setup from './api-helpers/setup';
 
-// TODO different docker compose configs
-
 const app = express();
 const PORT = process.env.PORT || 80;
 
@@ -21,7 +19,6 @@ app.use(morgan('tiny'));
 app.use('/', index);
 app.use('/webhook', webhook);
 
-// TODO handle promise rejection + send user status message
 hueApi.getLightGroups();
 
 // Messenger thread setup
