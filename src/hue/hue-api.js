@@ -61,6 +61,13 @@ export default {
     return this.getHue('/groups')
   },
 
+  setGroupOnOffState(groupId, value) {
+    let onOff
+    if (value == 'on') onOff = true
+    else onOff = false
+    return this.setHueState(`/groups/${groupId}/action`, { on: onOff })
+  },
+
   getLightGroup(groupId) {
     return this.getHue(`/groups/${groupId}`)
   },
@@ -68,11 +75,4 @@ export default {
   getLights() {
     return this.getHue('/lights')
   },
-
-  setGroupOnOffState(groupId, value) {
-    let onOff
-    if (value == 'on') onOff = true
-    else onOff = false
-    return this.setHueState(`/groups/${groupId}/action`, { on: onOff })
-  }
 }

@@ -6,7 +6,7 @@ import index from './routes/index';
 import webhook from './routes/webhook';
 
 import hueApi from "./hue/hue-api";
-import setup from './api-helpers/setup';
+import setup from './messenger/setup';
 
 const app = express();
 const PORT = process.env.PORT || 80;

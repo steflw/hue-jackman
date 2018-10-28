@@ -5,13 +5,13 @@ import sinon from "sinon";
 import {
   MISSING_ROOM_RESPONSE,
   UNEXPECTED_INTENT_RESPONSE
-} from "../src/bot/responses";
-import send from "../src/api-helpers/send";
+} from "../../src/bot/responses";
+import send from "../../src/messenger/send";
 import {
   getIntentResponse,
   handleMessage,
   filterLowConfidenceEntities, getErrorResponse,
-} from "../src/api-helpers/receive";
+} from "../../src/messenger/receive";
 
 import {
   expectedEntities,

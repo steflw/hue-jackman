@@ -1,5 +1,6 @@
 import express from 'express'
-import { handleMessage } from '../api-helpers/receive'
+import { handleMessage } from '../messenger/receive'
+import { handlePostback } from "../messenger/postback";
 
 const router = express.Router();
 
@@ -15,9 +16,12 @@ router.post('/', (req, res) => {
   res.sendStatus(200);
   const entries = req.body.entry;
     entries.forEach(entry => {
+      console.log(entry)
       entry.messaging.forEach(messagingEvent => {
         if (messagingEvent.message) {
           handleMessage(messagingEvent);
+        } else if (messagingEvent.postback) {
+          handlePostback(messagingEvent.postback)
         }
       })
     })

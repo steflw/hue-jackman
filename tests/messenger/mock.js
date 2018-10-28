@@ -12,7 +12,7 @@ export const messageResponse = {
         message: {
           mid: 'mid.sdofjlsdfjsdhgjdf',
           seq: 329720,
-          text: 'Turn on the living room lights',
+          text: 'Turn off the living room lights',
           nlp: {
             entities: {
               intent: [{
@@ -21,7 +21,7 @@ export const messageResponse = {
               }],
               on_off: [{
                 confidence: 0.85,
-                value: 'on'
+                value: 'off'
               }],
               location: [{
                 confidence: 0.85,
@@ -49,7 +49,7 @@ export const entities = {
     value: 'on_off'
   }],
   on_off: [{
-    value: 'on'
+    value: 'off'
   }],
   location
 };
