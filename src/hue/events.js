@@ -1,5 +1,5 @@
 import HueBot from '../bot/bot';
-import hueApi from './hue-api';
+import hueApi from './api';
 import send from '../messenger/send';
 import {
   REQUEST_FAILED_RESPONSE,

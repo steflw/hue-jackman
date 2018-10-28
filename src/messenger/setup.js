@@ -7,13 +7,9 @@ export const persistentMenu = () => {
       composer_input_disabled: false,
       call_to_actions: [
         {
-          title: 'List',
-          type: 'nested',
-          call_to_actions:[{
-            title: 'List lights',
-            type: 'postback',
-            payload: 'LIST_LIGHTS'
-          }]
+          title: 'List My Light Groups',
+          type: 'postback',
+          payload: 'LIST_LIGHT_GROUPS',
         },
         // {
         //   title: 'test',

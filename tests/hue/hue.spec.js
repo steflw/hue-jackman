@@ -2,13 +2,13 @@ import expect from 'expect';
 import nock from 'nock';
 import sinon from 'sinon';
 
-import api from '../../src/hue/hue-api';
+import api from '../../src/hue/api';
 import { lightGroupsResponse } from './hue-mock';
 import { getGroupByLocation } from '../../src/hue/events';
 
 export const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
 
-describe('hue-api.js', function () {
+describe('hue api.js', function () {
 
   afterEach(() => nock.cleanAll());
 

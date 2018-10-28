@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
         if (messagingEvent.message) {
           handleMessage(messagingEvent);
         } else if (messagingEvent.postback) {
-          handlePostback(messagingEvent.postback)
+          handlePostback(messagingEvent)
         }
       })
     })
