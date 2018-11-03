@@ -1,14 +1,14 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const callMessengerApi = (endPoint, messageData, retries = 3) => {
   if (!endPoint) {
     console.error('callApi requires a specific endpoint.');
-    return
+    return;
   }
 
   if (retries === 0) {
     console.error(`No more retries left, request to ${endPoint} failed\n`);
-    return
+    return;
   }
 
   const params = { access_token: process.env.PAGE_ACCESS_TOKEN };
@@ -20,25 +20,25 @@ const callMessengerApi = (endPoint, messageData, retries = 3) => {
     params: params
   })
   .then(() => {
-    console.log(`Success: sent message to ${endPoint} endpoint`)
+    console.log(`Success: sent message to ${endPoint} endpoint`);
   })
-  .catch(({response}) => {
+  .catch(({ response }) => {
     if (retries === 3) {
       console.error(
-          `There was an error calling ${endPoint}.`,
-          `\n(${response.status}) ${response.statusText}:`,
-          response.data.error.message
-      )
+        `There was an error calling ${endPoint}.`,
+        `\n(${response.status}) ${response.statusText}:`,
+        response.data.error.message
+      );
     }
     console.log(`Retrying request to ${endPoint}...`);
-    callMessengerApi(endPoint, messageData, retries - 1)
-  })
-}
+    callMessengerApi(endPoint, messageData, retries - 1);
+  });
+};
 
 export const callThreadApi = messageData => {
-  return callMessengerApi('messenger_profile', messageData)
-}
+  return callMessengerApi('messenger_profile', messageData);
+};
 
 export const callMessagesApi = messageData => {
-  return callMessengerApi('messages', messageData)
-}
+  return callMessengerApi('messages', messageData);
+};

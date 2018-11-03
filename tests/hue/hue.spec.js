@@ -6,7 +6,7 @@ import api from '../../src/hue/api';
 import { lightGroupsResponse } from './hue-mock';
 import { getGroupByLocation } from '../../src/hue/events';
 
-export const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
+export const baseURL = `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`;
 
 describe('hue api.js', function () {
 
@@ -28,8 +28,8 @@ describe('hue api.js', function () {
       nock(baseURL)
       .get('/groups')
       .reply(200, lightGroupsResponse);
-      const response = await api.getHueEndpoint('/groups')
-      expect(response.data).toEqual(lightGroupsResponse)
+      const response = await api.getHueEndpoint('/groups');
+      expect(response.data).toEqual(lightGroupsResponse);
     });
   });
 
@@ -39,14 +39,14 @@ describe('hue api.js', function () {
       .get('/groups')
       .reply(200, lightGroupsResponse);
       const lightGroups = await api.getLightGroups();
-      expect(lightGroups).toEqual(lightGroupsResponse)
+      expect(lightGroups).toEqual(lightGroupsResponse);
     });
   });
 
   describe('getGroupByLocation', function () {
     it('should return object', function () {
-      const group = getGroupByLocation(lightGroupsResponse, lightGroupsResponse[1].name)
-      expect(group).toEqual({ groupId: '1', ...lightGroupsResponse[1] })
+      const group = getGroupByLocation(lightGroupsResponse, lightGroupsResponse[1].name);
+      expect(group).toEqual({ groupId: '1', ...lightGroupsResponse[1] });
     });
-  })
+  });
 });

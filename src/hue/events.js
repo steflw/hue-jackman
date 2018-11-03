@@ -10,19 +10,19 @@ import {
 export const hueBot = new HueBot();
 
 hueBot.on('on_off', async (message) => {
-  console.log('event fired on_off', message)
-  const groups = await hueApi.getLightGroups()
-  const group = getGroupByLocation(groups, message.location)
+  console.log('event fired on_off', message);
+  const groups = await hueApi.getLightGroups();
+  const group = getGroupByLocation(groups, message.location);
   if (group) {
     try {
-      await hueApi.setGroupOnOffState(group.groupId, message.intentValue)
-      send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE)
+      await hueApi.setGroupOnOffState(group.groupId, message.intentValue);
+      send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE);
     } catch (e) {
       console.log(e);
-      send.textMessage(message.senderId, REQUEST_FAILED_RESPONSE)
+      send.textMessage(message.senderId, REQUEST_FAILED_RESPONSE);
     }
   } else {
-    send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE)
+    send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE);
   }
 });
 
@@ -37,7 +37,7 @@ hueBot.on('on_off', async (message) => {
 export const getGroupByLocation = (groups, location) => {
   for (let groupId in groups) {
     if (groups[groupId].name.toLowerCase() === location.toLowerCase()) {
-      return { groupId, ...groups[groupId] }
+      return { groupId, ...groups[groupId] };
     }
   }
 };

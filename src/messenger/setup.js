@@ -1,4 +1,4 @@
-import { callThreadApi } from './api'
+import { callThreadApi } from './api';
 
 export const persistentMenu = () => {
   callThreadApi({
@@ -9,8 +9,8 @@ export const persistentMenu = () => {
         {
           title: 'List My Light Groups',
           type: 'postback',
-          payload: 'LIST_LIGHT_GROUPS',
-        },
+          payload: 'LIST_LIGHT_GROUPS'
+        }
         // {
         //   title: 'test',
         //   type: 'nested',
@@ -31,18 +31,18 @@ export const persistentMenu = () => {
         // }
       ]
     }]
-  })
-}
+  });
+};
 
 export const getStarted = () => {
   callThreadApi({
-    get_started:{
+    get_started: {
       payload: 'get started'
     }
-  })
-}
+  });
+};
 
 export default {
   persistentMenu,
   getStarted
-}
+};

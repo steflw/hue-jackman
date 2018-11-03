@@ -7,7 +7,7 @@ export const message = (recipientId, payload) => {
     },
     message: payload
   };
-  callMessagesApi(messageData)
+  callMessagesApi(messageData);
 };
 
 export const textMessage = (recipientId, text) => message(recipientId, { text });
@@ -19,11 +19,11 @@ export const readReceipt = recipientId => {
     },
     sender_action: 'mark_seen'
   };
-  callMessagesApi(messageData)
+  callMessagesApi(messageData);
 };
 
 export default {
   message,
   textMessage,
   readReceipt
-}
+};

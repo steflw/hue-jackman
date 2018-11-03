@@ -1,4 +1,4 @@
-import send from './send'
+import send from './send';
 
 import {
   MISSING_INTENT_RESPONSE,
@@ -8,12 +8,12 @@ import {
 import { hueBot } from '../hue/events';
 
 export const handleMessage = event => {
-  const {sender, message} = event;
+  const { sender, message } = event;
   send.readReceipt(sender.id);
 
   if (!message.nlp || !Object.keys(message.nlp).length) {
     handleNlpError(sender.id);
-    return
+    return;
   }
 
   const filteredEntities = filterLowConfidenceEntities(message.nlp.entities);
@@ -21,12 +21,12 @@ export const handleMessage = event => {
 
   if (errorResponse) {
     send.textMessage(sender.id, errorResponse);
-    return
+    return;
   }
 
   getIntentResponse(message.nlp.entities.intent[0].value, filteredEntities);
 
-  hueBot.handleMessageIntent(filteredEntities, sender.id)
+  hueBot.handleMessageIntent(filteredEntities, sender.id);
 };
 
 export const handleNlpError = recipientId =>
@@ -36,17 +36,17 @@ export const handleNlpError = recipientId =>
   );
 
 export const filterLowConfidenceEntities = entities =>
-    Object.keys(entities)
-    .filter(key => entities[key][0].confidence >= 0.8)
-    .reduce((acc, key) => {
-      return {
-        ...acc,
-        [key]: entities[key]
-      }
-    }, {});
+  Object.keys(entities)
+  .filter(key => entities[key][0].confidence >= 0.8)
+  .reduce((acc, key) => {
+    return {
+      ...acc,
+      [key]: entities[key]
+    };
+  }, {});
 
 export const getErrorResponse = filteredEntities => {
-  const {intent} = filteredEntities;
+  const { intent } = filteredEntities;
 
   if (!filteredEntities.intent)
     return MISSING_INTENT_RESPONSE;
@@ -62,12 +62,12 @@ export const getErrorResponse = filteredEntities => {
 
 export const getIntentResponse = (intentValue, filteredEntities) => {
   const location = filteredEntities.location[0].value,
-      value = filteredEntities[intentValue][0] ? filteredEntities[intentValue][0].value : '';
+    value = filteredEntities[intentValue][0] ? filteredEntities[intentValue][0].value : '';
   return {
     on_off: `Turning ${value} the ${location} lights`,
     brightness: `Setting the ${location} lights to ${value} brightness`,
-    colour: `Changing the colour of the ${location} lights to ${value}`,
-  }[intentValue] || UNEXPECTED_INTENT_RESPONSE
+    colour: `Changing the colour of the ${location} lights to ${value}`
+  }[intentValue] || UNEXPECTED_INTENT_RESPONSE;
 };
 
 export default {
@@ -75,4 +75,4 @@ export default {
   getErrorResponse,
   filterLowConfidenceEntities,
   getIntentResponse
-}
+};
