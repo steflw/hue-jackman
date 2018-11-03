@@ -13,8 +13,6 @@ const callMessengerApi = (endPoint, messageData, retries = 3) => {
 
   const params = { access_token: process.env.PAGE_ACCESS_TOKEN };
 
-  // if (messageData.recipient.id === 'TEST123') return;
-
   axios({
     method: 'post',
     url: `https://graph.facebook.com/v2.6/me/${endPoint}`,
