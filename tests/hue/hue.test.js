@@ -39,7 +39,7 @@ describe('hue api.js', function () {
       .get('/groups')
       .reply(200, lightGroupsResponse);
       const lightGroups = await api.getLightGroups();
-      expect(lightGroups).toEqual(lightGroupsResponse);
+      expect(lightGroups.data).toEqual(lightGroupsResponse);
     });
   });
 

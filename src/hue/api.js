@@ -6,18 +6,10 @@ export const hueBridge = axios.create({
   baseURL: `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
 });
 
-hueBridge.interceptors.response.use(res => {
-  // cacheResponse(res);
-  return res;
-}, err => {
-  console.error(`error at hueBridge response interception ${err}`);
-  throw err;
-});
-
 export default {
   async getHueEndpoint(endPoint, retries = 3) {
     try {
-      return hueBridge.get(endPoint);
+      return await hueBridge.get(endPoint);
     } catch (error) {
       console.error(
         `There was an error calling ${endPoint}.`,
