@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const callMessengerApi = (endPoint, messageData, retries = 3) => {
+const callMessengerApi = async (endPoint, messageData, retries = 3) => {
   if (!endPoint) {
     console.error('callApi requires a specific endpoint.');
     return;
@@ -12,17 +12,15 @@ const callMessengerApi = (endPoint, messageData, retries = 3) => {
   }
 
   const params = { access_token: process.env.PAGE_ACCESS_TOKEN };
-
-  axios({
-    method: 'post',
-    url: `https://graph.facebook.com/v2.6/me/${endPoint}`,
-    data: messageData,
-    params: params
-  })
-  .then(() => {
+  try {
+    await axios({
+      method: 'post',
+      url: `https://graph.facebook.com/v2.6/me/${endPoint}`,
+      data: messageData,
+      params: params
+    });
     console.log(`Success: sent message to ${endPoint} endpoint`);
-  })
-  .catch(({ response }) => {
+  } catch ({ response }) {
     if (retries === 3) {
       console.error(
         `There was an error calling ${endPoint}.`,
@@ -32,7 +30,7 @@ const callMessengerApi = (endPoint, messageData, retries = 3) => {
     }
     console.log(`Retrying request to ${endPoint}...`);
     callMessengerApi(endPoint, messageData, retries - 1);
-  });
+  }
 };
 
 export const callThreadApi = messageData => {
