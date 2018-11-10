@@ -50,8 +50,9 @@ export default {
   //   return this.getHueEndpoint(endpoint)
   // },
 
-  getLightGroups() {
-    return this.getHueEndpoint('/groups');
+  async getLightGroups() {
+    const { data } = await this.getHueEndpoint('/groups');
+    return data
   },
 
   setGroupOnOffState(groupId, value) {
@@ -61,11 +62,11 @@ export default {
     return this.setHueState(`/groups/${groupId}/action`, { on: onOff });
   },
 
-  getLightGroup(groupId) {
-    return this.getHue(`/groups/${groupId}`);
-  },
-
-  getLights() {
-    return this.getHue('/lights');
-  }
+  // getLightGroup(groupId) {
+  //   return this.getHue(`/groups/${groupId}`);
+  // },
+  //
+  // getLights() {
+  //   return this.getHue('/lights');
+  // }
 };
