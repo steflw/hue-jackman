@@ -1,6 +1,6 @@
 require('dotenv').load();
 import axios from 'axios';
-import { cacheResponse, getCachedResponse } from './cache';
+// import { cacheResponse, getCachedResponse } from './cache';
 
 export const hueBridge = axios.create({
   baseURL: `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
