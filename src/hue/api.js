@@ -9,7 +9,8 @@ export const hueBridge = axios.create({
 export default {
   async getHueEndpoint(endPoint, retries = 3) {
     try {
-      return await hueBridge.get(endPoint);
+      const response = await hueBridge.get(endPoint);
+      return response.data
     } catch (error) {
       console.error(
         `There was an error calling ${endPoint}.`,
@@ -50,9 +51,8 @@ export default {
   //   return this.getHueEndpoint(endpoint)
   // },
 
-  async getLightGroups() {
-    const { data } = await this.getHueEndpoint('/groups');
-    return data
+  getLightGroups() {
+    return this.getHueEndpoint('/groups');
   },
 
   setGroupOnOffState(groupId, value) {
