@@ -61,8 +61,8 @@ export const getErrorResponse = filteredEntities => {
 };
 
 export const getIntentResponse = (intentValue, filteredEntities) => {
-  const location = filteredEntities.location[0].value,
-    value = filteredEntities[intentValue][0] ? filteredEntities[intentValue][0].value : '';
+  const location = filteredEntities.location[0].value
+  const value = filteredEntities[intentValue][0] ? filteredEntities[intentValue][0].value : '';
   return {
     on_off: `Turning ${value} the ${location} lights`,
     brightness: `Setting the ${location} lights to ${value} brightness`,

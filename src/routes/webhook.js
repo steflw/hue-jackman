@@ -14,17 +14,19 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   res.sendStatus(200);
-  const entries = req.body.entry;
-  entries.forEach(entry => {
-    console.log(entry);
-    entry.messaging.forEach(messagingEvent => {
-      if (messagingEvent.message) {
-        handleMessage(messagingEvent);
-      } else if (messagingEvent.postback) {
-        handlePostback(messagingEvent);
-      }
+  if (req.body.object === 'page') {
+    const entries = req.body.entry;
+    entries.forEach(entry => {
+      console.log(entry);
+      entry.messaging.forEach(messagingEvent => {
+        if (messagingEvent.message) {
+          handleMessage(messagingEvent);
+        } else if (messagingEvent.postback) {
+          handlePostback(messagingEvent);
+        }
+      });
     });
-  });
+  }
 });
 
 export default router;

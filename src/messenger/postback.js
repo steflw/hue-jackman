@@ -16,22 +16,30 @@ export const handlePostback = async ({ postback, sender }) => {
       break;
 
     case 'TOGGLE_LIVING_ROOM':
-      const groups = await hueApi.getLightGroups();
-      const group = getGroupByLocation(groups, 'Living Room');
-      if (group) {
-        try {
-          await hueApi.setGroupOnOffState(group.groupId, !group.action.on);
-          send.textMessage(sender.id, REQUEST_FULLFILLED_RESPONSE);
-        } catch (e) {
-          console.log(e);
-          send.textMessage(sender.id, REQUEST_FAILED_RESPONSE);
-        }
-      } else {
-        send.textMessage(sender.id, UNKNOWN_ROOM_RESPONSE);
-      }
-
+      await toggleGroupState('Living Room', sender.id);
       break;
+
+    case 'TOGGLE_ISLAND':
+      await toggleGroupState('Living Room', sender.id);
+      break;
+
     default:
       send.textMessage(sender.id, `Sorry this postback isn't supported :(`)
   }
 };
+
+const toggleGroupState = async (loc, senderId) => {
+  const groups = await hueApi.getLightGroups();
+  const group = getGroupByLocation(groups, loc);
+  if (group) {
+    try {
+      await hueApi.setGroupOnOffState(group.groupId, !group.action.on);
+      send.textMessage(senderId, REQUEST_FULLFILLED_RESPONSE);
+    } catch (e) {
+      console.log(e);
+      send.textMessage(senderId, REQUEST_FAILED_RESPONSE);
+    }
+  } else {
+    send.textMessage(senderId, UNKNOWN_ROOM_RESPONSE);
+  }
+}

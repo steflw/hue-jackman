@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 80;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+app.disable('x-powered-by');
 
 // Routes
 app.use('/', index);
