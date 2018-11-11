@@ -1,5 +1,5 @@
 # fb-hue-bot
-Personal Facebook Messenger chatbot for Philips Hue hosted on Balena.io (formerly resin.io)
+Personal Facebook Messenger chatbot for Philips Hue hosted on Balena cloud (formerly resin.io)
 # 
 
 ### Get Started (dev):
