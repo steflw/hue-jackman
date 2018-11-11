@@ -22,8 +22,7 @@ app.use('/webhook', webhook);
 hueApi.getLightGroups();
 
 // Messenger thread setup
-// setup.persistentMenu();
-// setup.getStarted();
+setup.persistentMenu();
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);

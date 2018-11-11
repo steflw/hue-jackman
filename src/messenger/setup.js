@@ -1,6 +1,6 @@
 import { callThreadApi } from './api';
 
-export const persistentMenu = () => {
+export const persistentMenu = () =>
   callThreadApi({
     persistent_menu: [{
       locale: 'default',
@@ -32,17 +32,3 @@ export const persistentMenu = () => {
       ]
     }]
   });
-};
-
-export const getStarted = () => {
-  callThreadApi({
-    get_started: {
-      payload: 'get started'
-    }
-  });
-};
-
-export default {
-  persistentMenu,
-  getStarted
-};
