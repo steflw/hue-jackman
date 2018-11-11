@@ -20,8 +20,6 @@ app.disable('x-powered-by');
 app.use('/', index);
 app.use('/webhook', webhook);
 
-hueApi.getLightGroups();
-
 // Messenger thread setup
 setup.persistentMenu();
 
