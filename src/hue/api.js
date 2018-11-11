@@ -27,7 +27,7 @@ export default {
 
   async setHueState(endPoint, params, retries = 3) {
     try {
-      return await hueBridge.put(endPoint, params);
+      return hueBridge.put(endPoint, params);
     } catch (error) {
       console.error(
         `There was an error calling ${endPoint}.`,
