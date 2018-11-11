@@ -20,7 +20,7 @@ export const handlePostback = async ({ postback, sender }) => {
       const group = getGroupByLocation(groups, 'Living Room');
       if (group) {
         try {
-          await hueApi.setGroupOnOffState(group.groupId, !!group.action.on);
+          await hueApi.setGroupOnOffState(group.groupId, !group.action.on);
           send.textMessage(sender.id, REQUEST_FULLFILLED_RESPONSE);
         } catch (e) {
           console.log(e);
