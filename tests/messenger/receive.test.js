@@ -10,7 +10,7 @@ import send from '../../src/messenger/send';
 import {
   getIntentResponse,
   handleMessage,
-  filterLowConfidenceEntities, getErrorResponse
+  filterLowConfidenceEntities, validateEntities
 } from '../../src/messenger/receive';
 
 import {
@@ -55,7 +55,7 @@ describe('receive', function () {
     });
   });
 
-  describe('getErrorResponse', function () {
+  describe('validateEntities', function () {
     it('should handle undefined room entity', function () {
       const undefinedRoomEntity = {
         intent: [{
@@ -65,7 +65,7 @@ describe('receive', function () {
           value: 'off'
         }]
       };
-      expect(getErrorResponse(undefinedRoomEntity)).toEqual(MISSING_ROOM_RESPONSE);
+      expect(validateEntities(undefinedRoomEntity)).toEqual(MISSING_ROOM_RESPONSE);
     });
 
   });

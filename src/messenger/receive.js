@@ -17,11 +17,12 @@ export const handleMessage = event => {
   }
 
   const filteredEntities = filterLowConfidenceEntities(message.nlp.entities);
-  const errorResponse = getErrorResponse(filteredEntities);
 
-  if (errorResponse) {
-    send.textMessage(sender.id, errorResponse);
-    return;
+  try {
+    validateEntities(filteredEntities);
+  } catch (error) {
+    send.textMessage(sender.id, error);
+    return
   }
 
   getIntentResponse(message.nlp.entities.intent[0].value, filteredEntities);
@@ -45,23 +46,23 @@ export const filterLowConfidenceEntities = entities =>
     };
   }, {});
 
-export const getErrorResponse = filteredEntities => {
+export const validateEntities = filteredEntities => {
   const { intent } = filteredEntities;
 
   if (!filteredEntities.intent)
-    return MISSING_INTENT_RESPONSE;
+    throw MISSING_INTENT_RESPONSE;
 
   if (!filteredEntities.location)
-    return MISSING_ROOM_RESPONSE;
+    throw MISSING_ROOM_RESPONSE;
 
   const entityValue = filteredEntities[intent[0].value][0].value;
 
   if (!filteredEntities[intent[0].value])
-    return `Sorry I don't understand "${entityValue}"`;
+    throw `Sorry I don't understand "${entityValue}"`;
 };
 
 export const getIntentResponse = (intentValue, filteredEntities) => {
-  const location = filteredEntities.location[0].value
+  const location = filteredEntities.location[0].value;
   const value = filteredEntities[intentValue][0] ? filteredEntities[intentValue][0].value : '';
   return {
     on_off: `Turning ${value} the ${location} lights`,
@@ -72,7 +73,7 @@ export const getIntentResponse = (intentValue, filteredEntities) => {
 
 export default {
   handleMessage,
-  getErrorResponse,
+  getErrorResponse: validateEntities,
   filterLowConfidenceEntities,
   getIntentResponse
 };

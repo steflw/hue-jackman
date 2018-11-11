@@ -42,4 +42,4 @@ const toggleGroupState = async (loc, senderId) => {
   } else {
     send.textMessage(senderId, UNKNOWN_ROOM_RESPONSE);
   }
-}
+};
