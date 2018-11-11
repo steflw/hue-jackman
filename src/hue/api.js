@@ -1,6 +1,5 @@
 require('dotenv').load();
 import axios from 'axios';
-// import { cacheResponse, getCachedResponse } from './cache';
 
 export const hueBridge = axios.create({
   baseURL: `http://${process.env.BRIDGE_IP}/api/${process.env.BRIDGE_USERNAME}`
@@ -17,7 +16,6 @@ export default {
         `\n(${error.status}) ${error.statusText}:`,
         error.message
       );
-
       if (retries === 0) {
         console.error(`No more retries left, request to hue bridge "${endPoint}" failed\n`);
         return error;
@@ -45,11 +43,6 @@ export default {
       return this.getHueEndpoint(endPoint, retries - 1);
     }
   },
-
-  // async getHue(endpoint) {
-  //   // return await getCachedResponse(endpoint) || await this.getHueEndpoint(endpoint)
-  //   return this.getHueEndpoint(endpoint)
-  // },
 
   getLightGroups() {
     return this.getHueEndpoint('/groups');
