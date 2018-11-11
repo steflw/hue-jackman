@@ -49,10 +49,9 @@ export default {
   },
 
   setGroupOnOffState(groupId, value) {
-    let onOff;
-    if (value == 'on') onOff = true;
-    else onOff = false;
-    return this.setHueState(`/groups/${groupId}/action`, { on: onOff });
+    return this.setHueState(`/groups/${groupId}/action`, {
+      on: value.toLowerCase() === 'on'
+    });
   },
 
   // getLightGroup(groupId) {

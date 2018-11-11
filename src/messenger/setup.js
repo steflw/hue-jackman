@@ -1,6 +1,6 @@
 import { callThreadApi } from './api';
 
-export const persistentMenu = () =>
+const persistentMenu = () =>
   callThreadApi({
     persistent_menu: [{
       locale: 'default',
@@ -10,25 +10,39 @@ export const persistentMenu = () =>
           title: 'List My Light Groups',
           type: 'postback',
           payload: 'LIST_LIGHT_GROUPS'
-        }
+        },
+        {
+          title: 'Quick Actions',
+          type: 'nested',
+          call_to_actions:[{
+            title: 'Toggle Living Room',
+            type: 'postback',
+            payload: 'TOGGLE_LIVING_ROOM'
+          },
+        {
+            title: 'Toggle Island',
+            type: 'postback',
+            payload: 'TOGGLE_ISLAND'
+          }]
+        },
         // {
-        //   title: 'test',
+        //   title: 'Quick Actions',
         //   type: 'nested',
         //   call_to_actions:[{
-        //     title: 'another test',
+        //     title: 'Toggle Living Room',
         //     type: 'postback',
-        //     payload: 'TEST_PAYLOAD'
+        //     payload: 'TOGGLE_LIVING_ROOM'
+        //   },
+        // {
+        //     title: 'Toggle Island',
+        //     type: 'postback',
+        //     payload: 'TOGGLE_ISLAND'
         //   }]
         // },
-        // {
-        //   title: 'test',
-        //   type: 'nested',
-        //   call_to_actions:[{
-        //     title: 'another test',
-        //     type: 'postback',
-        //     payload: 'TEST_PAYLOAD'
-        //   }]
-        // }
       ]
     }]
   });
+
+export default {
+  persistentMenu
+}
