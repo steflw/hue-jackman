@@ -48,10 +48,8 @@ export default {
     return this.getHueEndpoint('/groups');
   },
 
-  setGroupOnOffState(groupId, value) {
-    return this.setHueState(`/groups/${groupId}/action`, {
-      on: value.toLowerCase() === 'on'
-    });
+  setGroupOnOffState(groupId, on) {
+    return this.setHueState(`/groups/${groupId}/action`, { on });
   },
 
   // getLightGroup(groupId) {

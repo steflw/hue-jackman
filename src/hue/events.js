@@ -15,7 +15,7 @@ hueBot.on('on_off', async (message) => {
   const group = getGroupByLocation(groups, message.location);
   if (group) {
     try {
-      const state = message.intentValue;
+      const state = message.intentValue.toLowerCase() === 'on';
       await hueApi.setGroupOnOffState(group.groupId, state);
       send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE);
     } catch (e) {
