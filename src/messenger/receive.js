@@ -73,7 +73,7 @@ export const getIntentResponse = (intentValue, filteredEntities) => {
 
 export default {
   handleMessage,
-  getErrorResponse: validateEntities,
+  validateEntities,
   filterLowConfidenceEntities,
   getIntentResponse
 };
