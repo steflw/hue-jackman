@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import index from './routes/index';
 import webhook from './routes/webhook';
 
-import hueApi from './hue/api';
 import setup from './messenger/setup';
 
 const app = express();
