@@ -20,7 +20,7 @@ export const handlePostback = async ({ postback, sender }) => {
       break;
 
     case 'TOGGLE_ISLAND':
-      await toggleGroupState('Living Room', sender.id);
+      await toggleGroupState('Island', sender.id);
       break;
 
     default:
