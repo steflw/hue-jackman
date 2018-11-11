@@ -14,7 +14,7 @@ BRIDGE_USERNAME - Hue device username
 ```
 3. npm install -g localtunnel (if its not already installed)
 4. npm run dev
-5. <code>lt --subdomain fbhuebot --port 5000</code>
+5. <code>lt --subdomain <app name> --port 5000</code>
 
 #
 
