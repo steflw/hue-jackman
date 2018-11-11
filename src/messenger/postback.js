@@ -21,13 +21,13 @@ export const handlePostback = async ({ postback, sender }) => {
       if (group) {
         try {
           await hueApi.setGroupOnOffState(group.groupId, !!group.action.on);
-          send.textMessage(message.senderId, REQUEST_FULLFILLED_RESPONSE);
+          send.textMessage(sender.id, REQUEST_FULLFILLED_RESPONSE);
         } catch (e) {
           console.log(e);
-          send.textMessage(message.senderId, REQUEST_FAILED_RESPONSE);
+          send.textMessage(sender.id, REQUEST_FAILED_RESPONSE);
         }
       } else {
-        send.textMessage(message.senderId, UNKNOWN_ROOM_RESPONSE);
+        send.textMessage(sender.id, UNKNOWN_ROOM_RESPONSE);
       }
 
       break;
