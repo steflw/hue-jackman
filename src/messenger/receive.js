@@ -25,7 +25,12 @@ export const handleMessage = event => {
     return
   }
 
-  getIntentResponse(message.nlp.entities.intent[0].value, filteredEntities);
+  const response = getIntentResponse(
+    message.nlp.entities.intent[0].value,
+    filteredEntities
+  );
+
+  send.textMessage(sender.id, response);
 
   hueBot.handleMessageIntent(filteredEntities, sender.id);
 };

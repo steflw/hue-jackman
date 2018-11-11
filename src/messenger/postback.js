@@ -1,6 +1,10 @@
 import hueApi from '../hue/api';
 import send from '../messenger/send';
-import { REQUEST_FAILED_RESPONSE, REQUEST_FULLFILLED_RESPONSE, UNKNOWN_ROOM_RESPONSE } from '../bot/responses';
+import {
+  REQUEST_FAILED_RESPONSE,
+  REQUEST_FULLFILLED_RESPONSE,
+  UNKNOWN_ROOM_RESPONSE
+} from '../bot/responses';
 import { getGroupByLocation } from '../hue/events';
 
 export const handlePostback = async ({ postback, sender }) => {
