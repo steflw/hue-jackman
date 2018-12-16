@@ -32,9 +32,9 @@ export const handlePostback = async ({ postback, sender }) => {
   }
 };
 
-const toggleGroupState = async (loc, senderId) => {
+const toggleGroupState = async (location, senderId) => {
   const groups = await hueApi.getLightGroups();
-  const group = getGroupByLocation(groups, loc);
+  const group = getGroupByLocation(groups, location);
   if (group) {
     try {
       await hueApi.setGroupOnOffState(group.groupId, !group.action.on);
