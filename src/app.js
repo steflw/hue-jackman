@@ -17,6 +17,10 @@ app.disable('x-powered-by');
 
 // Routes
 
+app.use('/', index);
+app.use('/webhook', webhook);
+
+
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
   err.status = 404;
@@ -30,9 +34,6 @@ app.use(function(err, req, res) {
   res.status(err.status || 500).send('Error!');
   res.end();
 });
-
-app.use('/', index);
-app.use('/webhook', webhook);
 
 // Messenger thread setup
 setup.persistentMenu();
