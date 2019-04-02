@@ -33,13 +33,13 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",
     "expect": "^23.3.0",
     "mocha": "^4.0.1",
     "nock": "^9.4.1",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.18.10",
     "sinon": "^6.1.3"
   }
 }
