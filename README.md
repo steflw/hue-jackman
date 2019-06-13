@@ -1,4 +1,4 @@
-# fb-hue-bot
+# Hue Jackman
 Personal Facebook Messenger chatbot for Philips Hue hosted on Balena cloud (formerly resin.io)
 # 
 
