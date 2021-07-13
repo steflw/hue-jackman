@@ -3,7 +3,7 @@ Personal Facebook Messenger chatbot for Philips Hue hosted on Balena cloud (form
 # 
 
 ### Get Started (dev):
-1. npm i
+1. <code>npm i</code>
 2. create a .env file with the following variables:
 ```
 FB_VERIFY_TOKEN
@@ -12,8 +12,8 @@ NPM_CONFIG_PRODUCTION=false
 BRIDGE_IP - Local IP address of Hue Bridge
 BRIDGE_USERNAME - Hue device username
 ```
-3. npm install -g localtunnel (if its not already installed)
-4. npm run dev
+3. <code>npm install -g localtunnel</code> (if its not already installed)
+4. <code>npm run dev</code>
 5. <code>lt --subdomain someurl --port 5000</code>
 
 #
